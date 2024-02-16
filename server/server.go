@@ -10,7 +10,7 @@ import (
 
 var port = "4196"
 
-var clientID = "_GqGKwzmSP0KZt_4tcfdoQ"
+// var clientID = ""
 var state = "test"
 var redirectURI = "http://localhost:4196/"
 var scopes = "identity,edit,mysubreddits,read,report,submit,subscribe,vote"
