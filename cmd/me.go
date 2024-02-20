@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var meCmd = &cobra.Command{
+var MeCmd = &cobra.Command{
 	Use:   "me",
 	Short: "Shows user identity and information.",
 	Run: func(cmd *cobra.Command, args []string) {
@@ -16,5 +16,5 @@ var meCmd = &cobra.Command{
 }
 
 func init() {
-	RootCmd.AddCommand(meCmd)
+	RootCmd.AddCommand(MeCmd)
 }

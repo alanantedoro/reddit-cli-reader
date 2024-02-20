@@ -3,15 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>RedditCLI</title>
   </head>
   <body>
     Thanks for using my app! This window will close now.
-
     <script>
-      setTimeout(() => {
+      var fragment = window.location.hash;
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://localhost:4196/getAuth", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.send(JSON.stringify({ fragment: fragment }));
+
+      setTimeout(function () {
         window.close();
-      }, "5000");
+      }, 5000);
     </script>
   </body>
 </html>

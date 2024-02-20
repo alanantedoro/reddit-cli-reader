@@ -10,26 +10,30 @@ import (
 )
 
 func main() {
-	err := server.Auth()
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	cmd.RootCmd.Execute()
+	go func() {
+		cmd.RootCmd.Execute()
 
-	/*
-		Ver cuando iniciar el sv, creo que toda esta
-		logica deberia estar en el root.go.
-	*/
+	}()
 
-	http.HandleFunc("/getAuth", server.GetAuth)
+	go func() {
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "server/thanks.html")
-	})
+		http.HandleFunc("/getAuth", server.GetAuth)
 
-	err = server.StartSv()
-	if err != nil {
-		log.Fatal(err)
-	}
+		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			http.ServeFile(w, r, "server/thanks.html")
+		})
+
+		err := server.Auth()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		err = server.StartSv()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	select {}
 }

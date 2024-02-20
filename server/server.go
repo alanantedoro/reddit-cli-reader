@@ -12,7 +12,7 @@ import (
 
 var port = "4196"
 
-var clientID = ""
+var clientID = "SRFxgJ8D1Ydqz_YB66dgUA"
 var state = "test"
 var redirectURI = "http://localhost:4196/"
 var scopes = "identity,edit,mysubreddits,read,report,submit,subscribe,vote"
@@ -45,7 +45,7 @@ func GetAuth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("Fragmento recibido:", fragment)
+	// fmt.Println("Fragmento recibido:", fragment)
 
 	index := strings.Index(fragment, "access_token=")
 	if index == -1 {
