@@ -1,19 +1,25 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
-	"redditcli/cmd"
-
 	"redditcli/server"
+
+	"github.com/rivo/tview"
 )
 
 func main() {
 
 	go func() {
-		cmd.RootCmd.Execute()
-
+		// cmd.RootCmd.Execute()
+		t := tui.startTUI()
+		fmt.Println(t)
+		box := tview.NewBox().SetBorder(true).SetTitle("Reddit-CLI")
+		if err := tview.NewApplication().SetRoot(box, true).Run(); err != nil {
+			panic(err)
+		}
 	}()
 
 	go func() {
