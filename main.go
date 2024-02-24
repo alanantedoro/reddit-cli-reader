@@ -4,22 +4,24 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"redditcli/server"
-
-	"github.com/rivo/tview"
+	"redditcli/tui"
 )
 
 func main() {
 
 	go func() {
 		// cmd.RootCmd.Execute()
-		t := tui.startTUI()
-		fmt.Println(t)
-		box := tview.NewBox().SetBorder(true).SetTitle("Reddit-CLI")
-		if err := tview.NewApplication().SetRoot(box, true).Run(); err != nil {
-			panic(err)
+		t := tui.InitTUI()
+		err := t.Start()
+		if err != nil {
+			fmt.Printf("Failed to start: %v\n", err)
+			os.Exit(1)
 		}
+		fmt.Println(t)
+
 	}()
 
 	go func() {
